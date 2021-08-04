@@ -3,68 +3,43 @@ from django.db import models
 
 # Create your models here.
 
-class CricketItemsModel(models.Model):
+#Catagory model catgory name(sports)
+#Product model (link cat1)
+
+
+class Sports_Catagory_Model(models.Model):
+    name_of_sports=models.CharField(max_length=200,unique=True)
+
+    def __str__(self):
+        return self.name_of_sports
+
+class Product_Model(models.Model):
+    sports_Model=models.ForeignKey(Sports_Catagory_Model, on_delete=models.CASCADE)
+    product_type=models.CharField(max_length=100,unique=True)
+
+    def __str__(self):
+
+        return self.product_type
+
+
+
+
+
+
+class Item_Creation_Model(models.Model):
     name_item=models.CharField(max_length=200)
-    choice=(("bat","bat"),("ball","ball"),("helmet","helmet"),
-            ("pad","pad"),("shoes","shoes"),("stumb","stumb"),
-            ("fullkit","fullkit"),("cap","cap"),("glovse","glovse"),("jersy","jersy"),("select","select"))
-    item_type=models.CharField(max_length=100,choices=choice,default="select")
-    item_image=models.ImageField(upload_to="sports/cricket/")
+    sports_catgory=models.ForeignKey(Sports_Catagory_Model, on_delete=models.CASCADE)
+    product=models.ForeignKey(Product_Model, on_delete=models.CASCADE)
+    item_image=models.ImageField(upload_to="sports/images")
     note=models.CharField(max_length=500)
     price=models.FloatField()
     warranty=models.CharField(max_length=100)
     Offer=models.CharField(max_length=50)
     count=models.IntegerField()
 
-class FootballItemsModel(models.Model):
-    name_item = models.CharField(max_length=200)
-    choice = (("football", "football"), ("Goal Post", "Goal Post"),
-              ("pad", "pad"), ("shoes", "shoes"),
-              ("fullkit", "fullkit"), ("glovse", "glovse"), ("jersy", "jersy"), ("select", "select"))
-    item_type = models.CharField(max_length=100, choices=choice, default="select")
-    item_image = models.ImageField(upload_to="sports/football/")
-    note = models.CharField(max_length=500)
-    price = models.FloatField()
-    warranty = models.CharField(max_length=100)
-    Offer = models.CharField(max_length=50)
-    count = models.IntegerField()
-
-class BadmintonItemModel(models.Model):
-    name_item = models.CharField(max_length=200)
-    choice = (("bat", "bat"), ("ball", "ball"),("Badminton net", "Badminton net"),
-              ("pad", "pad"), ("shoes", "shoes"), ("corke", "corke"),
-              ("fullkit", "fullkit"), ("cap", "cap"), ("jersy", "jersy"), ("select", "select"))
-    item_type = models.CharField(max_length=100, choices=choice, default="select")
-    item_image = models.ImageField(upload_to="sports/badminton/")
-    note = models.CharField(max_length=500)
-    price = models.FloatField()
-    warranty = models.CharField(max_length=100)
-    Offer = models.CharField(max_length=50)
-    count = models.IntegerField()
-
-class CarromChessItemModel(models.Model):
-    name_item = models.CharField(max_length=200)
-    choice = (("chess board", "chess board"), ("carom board", "carom board"),("chess coins", "chess coins"),
-              ("powder", "powder"), ("stricker", "stricker"), ("carom coins", "carom coins"),
-              ("chess fullkit", "chess fullkit"), ("cap", "cap"), ("jersy", "jersy"), ("select", "select"),
-    ("carom fullkit", "carom fullkit"))
-    item_type = models.CharField(max_length=100, choices=choice, default="select")
-    item_image = models.ImageField(upload_to="sports/caromchess/")
-    note = models.CharField(max_length=500)
-    price = models.FloatField()
-    warranty = models.CharField(max_length=100)
-    Offer = models.CharField(max_length=50)
-    count = models.IntegerField()
-
-class SportsItemModel(models.Model):
-    cricket_item = models.ForeignKey(CricketItemsModel, on_delete=models.CASCADE)
-    football_item = models.ForeignKey(FootballItemsModel, on_delete=models.CASCADE)
-    badminton_item = models.ForeignKey(BadmintonItemModel, on_delete=models.CASCADE)
-    carromchess_item = models.ForeignKey(CarromChessItemModel, on_delete=models.CASCADE)
-
 
 class CartModel(models.Model):
-    Items=models.ForeignKey(SportsItemModel,on_delete=models.CASCADE)
+    Items=models.ForeignKey(Item_Creation_Model,on_delete=models.CASCADE)
     user=models.CharField(max_length=130)
     date=models.DateField(auto_now=True)
     choice=(("cart","cart"),("order placed","orderplaced"),
@@ -74,7 +49,7 @@ class CartModel(models.Model):
 
 class Order_items_Model(models.Model):
     order_id=models.IntegerField()
-    Order_Items=models.ForeignKey(SportsItemModel,on_delete=models.CASCADE)
+    Order_Items=models.ForeignKey(Item_Creation_Model,on_delete=models.CASCADE)
     user=models.CharField(max_length=130)
     date=models.DateField(auto_now=True)
     address=models.CharField(max_length=300)
@@ -92,7 +67,7 @@ class Compalaines_Model(models.Model):
 class Feedback_Model(models.Model):
     order=models.ForeignKey(Order_items_Model,on_delete=models.CASCADE)
     feedback_text=models.CharField(max_length=1000)
-    choice=(("Fast delivered","Fast delivered"),("Exlant","Exlant"),("good","good"),("bad","bad"))
+    choice=(("Fast delivered","Fast delivered"),("Excelent","Excelent"),("good","good"),("bad","bad"))
 
 
 

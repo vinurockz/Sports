@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List All</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      {%for sp in sports%}
+      <div class="card-body">
+        <h5 class="card-title">{{sp.name_item}}</h5>
+        <h6>{{sp.price}}</h6>
+        <h6>{{sp.count}}</h6>
+        <h6>{{sp.note}}</h6>
+        <p class="card-text">{{sp.sports_catgory}}&nbsp; Item</p>
+        <img src="{{sp.item_image.url}}" style="width:200px; height:300px;" alt="">
+        <a href="{%url 'updatesped' sp.id%}" class="btn btn-primary">Update</a>
+        <a href="{%url 'deletesped' sp.id%}" class="btn btn-primary">Delete</a>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

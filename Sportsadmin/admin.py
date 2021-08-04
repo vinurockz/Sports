@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CricketItemsModel,BadmintonItemModel,FootballItemsModel,CarromChessItemModel
+from .models import Item_Creation_Model,Sports_Catagory_Model,Product_Model
 #from .models import Order_items_Model,CartModel,SportsItemModel
 from .models import MyUser
 from django import forms
@@ -75,10 +75,9 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(MyUser, UserAdmin)
 admin.site.unregister(Group)
-admin.site.register(CricketItemsModel)
-admin.site.register(BadmintonItemModel)
-admin.site.register(FootballItemsModel)
-admin.site.register(CarromChessItemModel)
+admin.site.register(Product_Model)
+admin.site.register(Item_Creation_Model)
+admin.site.register(Sports_Catagory_Model)
 # admin.site.register(Order_items_Model)
 # admin.site.register(CartModel)
 # admin.site.register(SportsItemModel)

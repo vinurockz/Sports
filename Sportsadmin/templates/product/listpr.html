@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List product</title>
+</head>
+<body>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      {%for pr in product%}
+      <div class="card-body">
+        <h5 class="card-title">{{pr.sports_Model}}</h5>
+        <h6>{{pr.product_type}}</h6>
+
+        <a href="{%url 'updatesped' sp.id%}" class="btn btn-primary">Update</a>
+        <a href="{%url 'deletesped' sp.id%}" class="btn btn-primary">Delete</a>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
