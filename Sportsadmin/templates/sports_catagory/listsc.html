@@ -8,13 +8,12 @@
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
-      {%for pr in product%}
+      {%for sc in catagory%}
       <div class="card-body">
-        <h5 class="card-title">{{pr.sports_Model}}</h5>
-        <h6>{{pr.product_type}}</h6>
+        <h5 class="card-title">{{sc.name_of_sports}}</h5>
 
-        <a href="{%url 'updatepred' pr.id%}" class="btn btn-primary">Update</a>
-        <a href="{%url 'deletepred' pr.id%}" class="btn btn-primary">Delete</a>
+        <a href="{%url 'updatesced' sc.id%}" class="btn btn-primary">Update</a>
+        <a href="{%url 'deletesced' sc.id%}" class="btn btn-primary">Delete</a>
       </div>
       {%endfor%}
     </div>

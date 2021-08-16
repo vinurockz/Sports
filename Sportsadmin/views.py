@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse_lazy
+
 from .models import Item_Creation_Model,Sports_Catagory_Model,Product_Model,MyUser
 from .forms import SportsCategory_Form,ProductName_Form,CreateSportItems_Form,Reg_Form,Log_Form
 from  django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
@@ -66,14 +68,14 @@ class ListSportsItem_View(ListView):
                                                                             # Sports Item Update
 class UpdateSportsItem_View(UpdateView):
     model = Item_Creation_Model
-    template_name = "itemcreate/updatepr.html"
+    template_name = "itemcreate/updatesp.html"
     form_class = CreateSportItems_Form
-    success_url = "listsp"
+    success_url = reverse_lazy('listsped')
                                                                                 # Sports Item Delete
 class DeleteSportsItem_View(DeleteView):
     model = Item_Creation_Model
     template_name = "itemcreate/deleteview.html"
-    success_url = "listsp"
+    success_url = reverse_lazy('listsped')
     context_object_name = "sportsd"
 
                                                                                 # product Create
@@ -84,25 +86,53 @@ class CreateProduct_View(CreateView):
     success_url = "listpr"
     context = {}
 
-
+                                                                                     # product List
 class ListProduct_View(ListView):
-    model = ProductName_Form
+    model = Product_Model
     template_name = "product/listpr.html"
     context_object_name = "product"
 
-
+                                                                                # product Update
 class UpdateProduct_View(UpdateView):
-    model = ProductName_Form
+    model = Product_Model
     template_name = "product/updatepr.html"
-    form_class = CreateSportItems_Form
-    success_url = "listpr"
+    form_class = ProductName_Form
+    success_url = reverse_lazy('listpred')
 
-
+                                                                        # product Delete
 class DeleteProduct_View(DeleteView):
-    model = ProductName_Form
-    template_name = "deleteview.html"
-    success_url = "listpr"
+    model = Product_Model
+    template_name = "product/deletepr.html"
+    success_url = reverse_lazy('listpred')
     context_object_name = "productd"
+                                                                            # Catagory Create
+class CreateCatagory_View(CreateView):
+    model = Sports_Catagory_Model
+    form_class =SportsCategory_Form
+    template_name = "sports_catagory/createsc.html"
+    success_url = "listsc"
+    context = {}
+
+                                                                                     # Catagory List
+class ListCatagory_View(ListView):
+    model = Sports_Catagory_Model
+    template_name = "sports_catagory/listsc.html"
+    context_object_name = "catagory"
+
+                                                                                # Catagory Update
+class UpdateCatagory_View(UpdateView):
+    model = Sports_Catagory_Model
+    template_name = "sports_catagory/updatesc.html"
+    form_class = SportsCategory_Form
+    success_url = reverse_lazy('listsced')
+
+                                                                        # Catagory Delete
+class DeleteCatagory_View(DeleteView):
+    model = Sports_Catagory_Model
+    template_name = "sports_catagory/deletesc.html"
+    success_url = reverse_lazy('listsced')
+    context_object_name = "catagoryd"
+
 
 
 
