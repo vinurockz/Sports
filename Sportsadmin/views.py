@@ -65,6 +65,17 @@ class ListSportsItem_View(ListView):
     model = Item_Creation_Model
     template_name = "itemcreate/listsp.html"
     context_object_name = "sports"
+
+class SportsDetail(TemplateView):
+    model = Item_Creation_Model
+    template_name = "sportslist.html"
+    context = {}
+
+    def get(self, req, *args, **kwargs):
+        id = kwargs.get("pk")
+        sport = self.model.objects.get(id=id)
+        self.context["sport"] = sport
+        return render(req, self.template_name, self.context)
                                                                             # Sports Item Update
 class UpdateSportsItem_View(UpdateView):
     model = Item_Creation_Model

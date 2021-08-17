@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import homepage,Registration_View,Log_view,CreateSportsItem_View,ListSportsItem_View
+from .views import homepage,Registration_View,Log_view
+from .views import SportsDetail
 from .views import CreateSportsItem_View,ListSportsItem_View,UpdateSportsItem_View,DeleteSportsItem_View
 from .views import CreateProduct_View,ListProduct_View,UpdateProduct_View,DeleteProduct_View
 from .views import CreateCatagory_View,ListCatagory_View,UpdateCatagory_View,DeleteCatagory_View
@@ -8,6 +9,7 @@ urlpatterns = [
     path("home",homepage,name="home"),
     path("reg",Registration_View.as_view(),name="reged"),
     path("log",Log_view.as_view(),name="loged"),
+    path("detail/<int:pk>",SportsDetail.as_view(),name="details"),
 
 
     #sports Items

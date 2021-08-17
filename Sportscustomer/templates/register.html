@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>register</title>
 </head>
 <body>
-
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Signup">
+</form>
 </body>
 </html>

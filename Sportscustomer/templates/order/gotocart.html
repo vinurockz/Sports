@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+</head>
+<body>
+<h2>MyCart</h2>
+
+
+<div class="container" >
+   {%for cart in spitem%}
+    <div class="row" >
+
+
+
+            <div class="card" style=" background-color:#dcebd5; position:relative; width:400px; border-radius:3px; border:2px solid black; height:300px; float:left; margin-top:50px; margin-left:20px; ">
+  <img src="{{cart.Item_Creation_Model.item_image.url}}" alt="" width="220px" height="250px" style="border:3px solid black; position:absolute; left:30px; top:30px; ">
+    <div class="card-body" style="position:relative; top:20px; left:300px;">
+    <h5 class="card-title" style="font-size:20px;"><strong>{{cart.Item_Creation_Model.name_item}}</strong></h5>
+      <h6 ><strong>{{cart.Item_Creation_Model.note}}</strong></h6>
+
+    <p class="card-text"><strong>warranty Details:</strong><br>{{cart.Item_Creation_Model.warranty}}</p>
+      <p class="card-text"><strong>Price:{{cart.Item_Creation_Model.price}}</strong></p>
+
+
+
+
+
+<a href="{%url 'purchased' cart.Item_Creation_Model.id cart.id%}"  class="btn btn-primary">PlaceOrder</a>
+        <a href="{%url '' order.id %}"  class="btn btn-primary">Remove</a>
+
+
+
+
+
+
+  </div>
+
+</div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

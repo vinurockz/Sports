@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list item</title>
+</head>
+<body>
+
+<h4>Welcome to Sports Shop</h4>
+
+    <div class="container" >
+{%for sport in sports%}
+    <div class="row" >
+
+
+
+            <div class="card" style=" background-color:#dcebd5; position:relative; width:400px; border-radius:3px; border:2px solid black; height:300px; float:left; margin-top:50px; margin-left:20px; ">
+  <img src="{{sport.item_image.url}}" alt="" width="220px" height="250px" style="border:3px solid black; position:absolute; left:30px; top:30px; ">
+    <div class="card-body" style="position:relative; top:20px; left:300px;">
+    <h5 class="card-title" style="font-size:20px;"><strong>{{sport.name_item}}</strong></h5>
+      <h6 ><strong>{{sport.note}}  </strong></h6>
+
+
+      <p class="card-text"><strong>Price:{{sport.price}}</strong></p>
+
+<a href="{%url 'details' sport.id %}"  class="btn btn-primary">View</a>
+
+  </div>
+
+</div>
+
+    </div>
+{% endfor %}
+</div>
+
+
+  </body>
+</html>
+
+
